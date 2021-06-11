@@ -29,7 +29,7 @@
 
     <ng-container matColumnDef="birthday">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Birth date</mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let element"> {{element.birthday | date: 'd/M'}} </mat-cell>
+      <mat-cell mat-cell *matCellDef="let element"> {{element.birthday | date: 'MMM d y'}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="phone_number">
