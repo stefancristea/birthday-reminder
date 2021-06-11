@@ -1,0 +1,10 @@
+<div class="alert alert-success mx-auto mt-3 w-50" role="alert" *ngIf = "birthDay != undefined">
+  <h4 class="alert-heading">
+    Upcoming birthday!
+  </h4>
+  <hr>
+  <p>Don't forget to congratulate {{ birthDay.name }} {{ birthDay.last_name }} on his/her {{ birthDay.age | ordinalNumber }} birthday.</p>
+  <p class="mb-0">
+    {{ birthDay.name }} {{ birthDay.last_name }} is born on {{ birthDay.birthday | date:'MMM d' }}.
+  </p>
+</div>
