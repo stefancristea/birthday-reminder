@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../_services'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     templateUrl: 'login.component.html',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
+        private toastrService: ToastrService
     ) {
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
@@ -54,9 +56,11 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    this.toastrService.success('You are now logged in', 'Login');
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
+                    this.toastrService.error(error, 'Login');
                     this.loading = false;
                 });
     }

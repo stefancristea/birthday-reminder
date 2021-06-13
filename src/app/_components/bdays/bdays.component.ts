@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddElementComponent } from '../../_components/add-element/add-element.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bdays',
@@ -23,7 +24,7 @@ export class BdaysComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(public dialog: MatDialog, private friendsService: FriendsService) {
+  constructor(public dialog: MatDialog, private friendsService: FriendsService, private toastrService: ToastrService) {
     this.friendsService.getFriends().subscribe(friends => {
       this.myList = friends;
       this.dataSource = new MatTableDataSource(this.myList);
@@ -40,6 +41,7 @@ export class BdaysComponent implements OnInit, AfterViewInit {
   onDelete(row) {
     this.friendsService.deleteFriend(row).subscribe(result => {
       this.dataSource.data = this.myList;
+      this.toastrService.success(`You deleted ${row.name} ${row.last_name}.`, 'Birthdays');
     }, error => console.log(error));
   }
 
@@ -68,8 +70,11 @@ export class BdaysComponent implements OnInit, AfterViewInit {
       if (!result.value)
         return;
 
-      this.friendsService.addFriend(result.value).subscribe(() => {
+      this.friendsService.addFriend(result.value).subscribe(data => {
         this.dataSource.data = this.myList;
+        this.toastrService.success('You added a new friend into table', 'Birthdays');
+      }, () => {
+        this.toastrService.error('Error while adding a new friend', 'Birthdays');
       });
 
     });

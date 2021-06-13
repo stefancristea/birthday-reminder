@@ -29,6 +29,8 @@ import { UpcomingComponent } from './_components/upcoming/upcoming.component';
 
 import { OrdinalPipe } from './_helpers/ordinal.pipe';
 
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
     imports: [
@@ -47,6 +49,8 @@ import { OrdinalPipe } from './_helpers/ordinal.pipe';
         MatDialogModule,
         MatDatepickerModule,
         MatNativeDateModule,
+
+        ToastrModule.forRoot()
     ],
     declarations: [
         AppComponent,

@@ -1,6 +1,6 @@
 {
-  "name": "BirthdayReminder",
-  "version": "1.0",
+  "name": "birthdayreminder",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^9.1.9",
     "@angular/router": "^9.1.9",
     "core-js": "^3.6.5",
+    "ngx-toastr": "12.1.0",
     "rxjs": "~6.5.5",
     "tslib": "^1.13.0",
     "zone.js": "~0.10.2"
